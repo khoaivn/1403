@@ -6,9 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,23 +23,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true); // Show the back button
-            actionBar.setTitle("Danh sach sinh vien"); // Set the title
+        ListView lv = (ListView) findViewById(R.id.lv);
+
+        ArrayList<HashMap<String, Object>> list_iteam = new ArrayList<>();
+        for (int i = 0; i < 4; i++){
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("image", R.drawable.ic_launcher_background);
+            hashMap.put("text", "Thu" + i);
+            hashMap.put("text1", "Thu" + i);
+            list_iteam.add(hashMap);
+
         }
+        String[] from = {"image", "text ","text1"};
 
-        Button bt_1 = (Button) findViewById(R.id.bt_1);
-        bt_1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText et = (EditText) findViewById(R.id.et_1);
-                String aaa = et.getText().toString();
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                intent.putExtra("name_string", aaa);
-                startActivity(intent);
+        int to[] = {R.id.iv, R.id.tv, R.id.av};
 
-            }
-        });
+        SimpleAdapter simpleAdapter = new SimpleAdapter(this,
+                list_iteam,
+                R.layout.item_listview,
+                from,
+                to);
+        lv.setAdapter(simpleAdapter);
+
+
     }
 }
