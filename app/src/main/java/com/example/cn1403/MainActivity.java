@@ -23,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DBHandler dbHandler = new DBHandler(MainActivity.this);
+        dbHandler.addNewCourse("Nam nhat", "Hoc nhung mon dai cuong");
+        dbHandler.readCourses();
+
         ListView lv = (ListView) findViewById(R.id.lv);
 
         ArrayList<HashMap<String, Object>> list_iteam = new ArrayList<>();
