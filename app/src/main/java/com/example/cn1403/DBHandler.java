@@ -32,12 +32,12 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME + " ("
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + NAME_COL + " TEXT,"
+                + NAME_COL + " TEXT, "
                 + DESCRIPTION_COL + " TEXT)";
         db.execSQL(query);
         query = "CREATE TABLE " + "Mon" + " ("
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + NAME_COL + " TEXT,"
+                + NAME_COL + " TEXT, "
                 + DESCRIPTION_COL + " TEXT)";
         db.execSQL(query);
     }
